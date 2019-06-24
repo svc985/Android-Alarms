@@ -15,6 +15,8 @@ import static android.app.AlarmManager.RTC_WAKEUP;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
+    private static final int REQUEST_CODE = 1234;
+
     private int counter = 0;
     private Handler handler = new Handler();
 
@@ -38,7 +40,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.d("test", "alarm was fired");
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, REQUEST_CODE, intent, 0);
 
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (am == null) {
