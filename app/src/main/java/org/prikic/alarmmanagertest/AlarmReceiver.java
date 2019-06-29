@@ -1,46 +1,25 @@
 package org.prikic.alarmmanagertest;
 
 import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Handler;
-import android.support.v4.app.AlarmManagerCompat;
+import android.os.Build;
 import android.util.Log;
 
 import java.util.Calendar;
 
-import static android.app.AlarmManager.RTC_WAKEUP;
+import static org.prikic.alarmmanagertest.FgService.START_SERVICE;
 
 public class AlarmReceiver extends BroadcastReceiver {
 
-    private static final int REQUEST_CODE = 1234;
-
-    private int counter = 0;
-    private Handler handler = new Handler();
-
-    private void createTask() {
-        int maxCounter = 6;
-        if (counter < maxCounter) {
-            counter++;
-            handler.postDelayed(runnable, 1000);
-        }
-    }
-
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            Log.d("test", "every second");
-            createTask();
-        }
-    };
+    //private static final int REQUEST_CODE = 1234;
 
     @Override
     public void onReceive(Context context, Intent intent) {
         Log.d("test", "alarm was fired");
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(context, REQUEST_CODE, intent, 0);
+        //PendingIntent pendingIntent = PendingIntent.getBroadcast(context, REQUEST_CODE, intent, 0);
 
         AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         if (am == null) {
@@ -51,11 +30,23 @@ public class AlarmReceiver extends BroadcastReceiver {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        //createTask();
-        AlarmManagerCompat.setExactAndAllowWhileIdle(
-                am,
-                RTC_WAKEUP,
-                calendar.getTimeInMillis() + 60 * 1000,
-                pendingIntent);
+        startFgService(context);
+
+//        AlarmManagerCompat.setExactAndAllowWhileIdle(
+//                am,
+//                RTC_WAKEUP,
+//                calendar.getTimeInMillis() + 60 * 1000,
+//                pendingIntent);
+    }
+
+    private void startFgService(Context context) {
+        Intent intent = new Intent(context, FgService.class);
+        intent.setAction(START_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            context.startForegroundService(intent);
+        } else {
+            context.startService(intent);
+        }
     }
 }

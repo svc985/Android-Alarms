@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
         calendar.set(Calendar.MINUTE, 7);
         calendar.set(Calendar.SECOND, 0);
 
@@ -80,5 +80,11 @@ public class MainActivity extends AppCompatActivity {
                 PendingIntent.FLAG_NO_CREATE) != null);
 
         Log.d("test", "alarm is active:" + alarmUp);
+    }
+
+    public void stopService(View view) {
+        Intent intent = new Intent(this, FgService.class);
+        intent.setAction(FgService.STOP_SERVICE);
+        startService(intent);
     }
 }

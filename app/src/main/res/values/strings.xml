@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">AlarmManagerTest</string>
+
+    <plurals name="txt_millis_label">
+        <item quantity="one">Time remaining:1 second</item>
+        <item quantity="other">Time remaining:%1$d seconds</item>
+    </plurals>
 </resources>

@@ -11,10 +11,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+
+        <service
+            android:name=".FgService"
+            android:enabled="true"
+            android:exported="false" />
+
         <receiver
             android:name=".AlarmReceiver"
             android:enabled="true"
-            android:exported="false"/>
+            android:exported="false" />
 
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -23,6 +29,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DialogActivity"
+            android:theme="@style/Theme.AppCompat.Dialog"
+            android:launchMode="singleTop"
+            android:excludeFromRecents="true"/>
     </application>
 
 </manifest>
