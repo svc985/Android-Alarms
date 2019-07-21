@@ -64,13 +64,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void cancelRepeating(View view) {
+        Log.d("test", "inside cancelRepeating");
         Intent intent = new Intent(this, AlarmReceiver.class);
         pendingIntent = PendingIntent.getBroadcast(this, REQUEST_CODE, intent, PendingIntent.FLAG_NO_CREATE);
 
         if (pendingIntent != null) {
             am.cancel(pendingIntent);
             pendingIntent.cancel();
-            ChefSnackbar.make(constraintLayout).show();
+            String btnName = "Btn name";
+            ChefSnackbar.make(constraintLayout, btnName).show();
         }
     }
 
@@ -86,5 +88,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, FgService.class);
         intent.setAction(FgService.STOP_SERVICE);
         startService(intent);
+    }
+
+    public void btnClicked(View view) {
+        Log.d("test", "btn clicked");
     }
 }

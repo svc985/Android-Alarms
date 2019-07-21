@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import org.prikic.alarmmanagertest.R;
@@ -22,7 +23,7 @@ public class ChefSnackbar extends BaseTransientBottomBar<ChefSnackbar> {
         getView().setPadding(0, 0, 0, 0);
     }
 
-    public static ChefSnackbar make(View view) {
+    public static ChefSnackbar make(View view, String btnName) {
         // First we find a suitable parent for our custom view
         ViewGroup parent = findSuitableParent(view);
 
@@ -36,6 +37,9 @@ public class ChefSnackbar extends BaseTransientBottomBar<ChefSnackbar> {
                 R.layout.layout_snackbar_chef,
                 parent,
                 false);
+
+        Button btn = customView.findViewById(R.id.btn);
+        btn.setText(btnName);
 
         // We create and return our Snackbar
         return new ChefSnackbar(parent, customView);
