@@ -64,8 +64,8 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:onClick="alertDialog"
-        android:text="Alert dialog"
+        android:onClick="dialogFragment"
+        android:text="Dialog fragment"
         app:layout_constraintTop_toBottomOf="@id/button_cancel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
