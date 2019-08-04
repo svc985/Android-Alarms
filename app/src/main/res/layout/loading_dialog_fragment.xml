@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/edit_name"
+    android:layout_width="140dp"
+    android:layout_height="40dp"
+    android:padding="8dp"
+    android:layout_gravity="center"
+    android:importantForAccessibility="no"
+    android:orientation="horizontal">
+
+    <org.prikic.alarmmanagertest.CustomTextView
+        android:id="@+id/txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:contentDescription=""
+        android:importantForAccessibility="no"
+        android:text="Enter user name" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"/>
+
+</LinearLayout>
